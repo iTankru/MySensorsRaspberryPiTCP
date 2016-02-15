@@ -191,8 +191,10 @@ static void daemonize(void) {
 }
 void *connection_nrf(void *running);
 void *connection_nrf(void *running) {
-	while (running)
+	while (running) {
 		gw->processRadioMessage();
+	delay(1);
+	}
 	return 0;
 }
 ;
