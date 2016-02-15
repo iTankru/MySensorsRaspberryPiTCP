@@ -194,7 +194,7 @@ void MyGateway::parseAndSend(char *commandBuffer) {
 	  }
 	  i++;
   }
-  if (i<5) return; 
+  if (i<3) return; 
   if (destination==GATEWAY_ADDRESS && command==C_INTERNAL) {
     // Handle messages directed to gateway
     if (type == I_VERSION) {
