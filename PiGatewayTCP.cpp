@@ -87,6 +87,8 @@ int make_socket(uint16_t port) {
 
 int read_from_client(int filedes) {
 	char buffer[MAXMSG];
+	char _buffer[MAXMSG];
+
 	int nbytes;
 
 	nbytes = read(filedes, buffer, MAXMSG);
@@ -98,10 +100,11 @@ int read_from_client(int filedes) {
 		/* End-of-file. */
 		return -1;
 	else {
-		/* Data read. */
-		strtok(buffer, "\r\n");
+		memcpy(_buffer, buffer, nbytes);
+		strtok(_buffer, "\r\n");
+		log(LOG_INFO, "[TCPServer] receive: '%s'\n", _buffer);
 
-		log(LOG_INFO, "[TCPServer] receive: '%s'\n", buffer);
+		/* Data read. */
 		buffer[nbytes] = '\0';
 		gw->parseAndSend(buffer);
 
@@ -193,7 +196,7 @@ void *connection_nrf(void *running);
 void *connection_nrf(void *running) {
 	while (running) {
 		gw->processRadioMessage();
-	delay(1);
+		delay(1);
 	}
 	return 0;
 }
