@@ -129,6 +129,7 @@ void log(int priority, const char *format, ...) {
 void handle_sigint(int sig) {
 	log(LOG_INFO, "Received SIGINT\n");
 	running = 0;
+	system("cp -f /tmp/eeprom.rom /var/lib/eeprom.rom");
 }
 
 void handle_sigusr1(int sig) {
@@ -136,7 +137,8 @@ void handle_sigusr1(int sig) {
 	int curLogLevel = setlogmask(0);
 	if (curLogLevel != LOG_UPTO(LOG_DEBUG))
 		setlogmask (LOG_UPTO(LOG_DEBUG));else setlogmask(LOG_UPTO (LOG_INFO));
-	}
+	system("cp -f /tmp/eeprom.rom /var/lib/eeprom.rom");
+}
 
 void write_msg_to_pty(char *msg) {
 	if (msg == NULL) {

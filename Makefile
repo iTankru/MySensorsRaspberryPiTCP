@@ -27,7 +27,7 @@ ifeq (${PIREV},$(filter ${PIREV},a01041 a21041 0010))
 endif 
 
 # define all programs
-PROGRAMS = MyGateway MySensor MyMessage PiEEPROM
+PROGRAMS = MyGateway MySensor MyMessage PiEEPROMFile
 GATEWAY_TCP = PiGatewayTCP
 
 GATEWAY_TCP_SRCS = ${GATEWAY_TCP:=.cpp}

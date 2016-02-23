@@ -15,7 +15,7 @@
 using namespace std;
 
 #ifdef __Raspberry_Pi
-	#include <PiEEPROM.h>
+	#include <PiEEPROMFile.h>
 	#include "RF24.h"
 	#include "RF24_config.h"
 #else
